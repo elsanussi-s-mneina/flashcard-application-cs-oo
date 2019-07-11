@@ -6,4 +6,7 @@
     <RootNamespace>FlashcardApplication.Console</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FlashcardApplication.Integration\FlashcardApplication.Integration.csproj" />
+  </ItemGroup>
 </Project>
