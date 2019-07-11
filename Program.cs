@@ -6,7 +6,7 @@ namespace flashcard_application_cs_oo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Welcome to Remember the Letter (C# object-oriented)");
         }
     }
 }
