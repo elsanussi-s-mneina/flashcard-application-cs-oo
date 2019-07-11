@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RootNamespace>flashcard_application_cs_oo</RootNamespace>
+    <RootNamespace>FlashcardApplication.Console</RootNamespace>
   </PropertyGroup>
 
 </Project>
