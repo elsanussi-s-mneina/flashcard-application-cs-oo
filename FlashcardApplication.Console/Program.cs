@@ -1,4 +1,5 @@
 ﻿using System;
+using FlashcardApplication.Integration;
 
 namespace flashcard_application_cs_oo
 {
@@ -6,7 +7,12 @@ namespace flashcard_application_cs_oo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Remember the Letter (C# object-oriented)");
+            Greetings greetings = new Greetings();
+            Console.WriteLine(greetings.WelcomeMessage);
+            Console.WriteLine();
+            Console.WriteLine("Printing Lesson summary:");
+            Lesson lesson = new Lesson();
+            Console.WriteLine(lesson.LessonSummary());
         }
     }
 }
