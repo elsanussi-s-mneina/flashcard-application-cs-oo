@@ -28,15 +28,16 @@ namespace flashcard_application_cs_oo
             Console.WriteLine("Enter 'a' to show both front and back of each card.");
             Console.WriteLine("Enter 'f' to show the front of each card.");
             string userInput = Console.ReadLine();
+            Lesson lesson = new Lesson();
             if (userInput == "a")
             {
                 Console.WriteLine("Printing Lesson summary:");
-                Lesson lesson = new Lesson();
                 Console.WriteLine(lesson.LessonSummary(Flashcards));
             }
             else
             {
-                Console.WriteLine("Sorry, that feature is not implemented yet.");
+                Console.WriteLine("Print only fronts of each card:");
+                Console.WriteLine(lesson.FrontSummary(Flashcards));
             }
         }
     }

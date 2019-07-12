@@ -1,4 +1,6 @@
-﻿namespace FlashcardApplication.Integration
+﻿using System;
+
+namespace FlashcardApplication.Integration
 {
     public class Flashcard
     {
@@ -17,6 +19,11 @@
         public override string ToString()
         {
             return front + " | " + back;
+        }
+
+        public string ShowFront()
+        {
+            return front;
         }
     }
 }

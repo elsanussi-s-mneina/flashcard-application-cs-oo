@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace FlashcardApplication.Integration
@@ -19,6 +20,17 @@ namespace FlashcardApplication.Integration
             foreach (Flashcard flashcard in flashcards)
             {
                 result += flashcard + "\n";
+            }
+
+            return result;
+        }
+
+        public string FrontSummary(IList<Flashcard> flashcards)
+        {
+            string result = string.Empty;
+            foreach (Flashcard flashcard in flashcards)
+            {
+                result += flashcard.ShowFront() + "\n";
             }
 
             return result;

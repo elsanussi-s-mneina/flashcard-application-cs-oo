@@ -18,5 +18,21 @@ namespace Tests
             Flashcard flashcard = new Flashcard("AB", "abc");
             Assert.That(flashcard.ToString(), Is.EqualTo("AB | abc"));
         }
+
+        [Test]
+        public void ShowFront_WhenTheFrontSideIsOne_ReturnsOne()
+        {
+            Flashcard flashcard = new Flashcard("one", "une");
+            string result = flashcard.ShowFront();
+            Assert.That(result, Is.EqualTo("one"));
+        }
+
+        [Test]
+        public void ShowFront_WhenTheFrontSideIsThree_ReturnsThree()
+        {
+            Flashcard flashcard = new Flashcard("three", "h");
+            string result = flashcard.ShowFront();
+            Assert.That(result, Is.EqualTo("three"));
+        }
     }
 }
