@@ -4,8 +4,8 @@ namespace FlashcardApplication.Integration
 {
     public class Lesson
     {
-        private const string Flashcard1 = "the | le/la";
-        private const string Flashcard2 = "a | un/une";
+        private const string Flashcard1 = "the" + " | " + "le/la";
+        private const string Flashcard2 = "a" + " | " + "un/une";
         private readonly IList<string> Flashcards = new List<string> { Flashcard1, Flashcard2};
 
         public string LessonSummary()
