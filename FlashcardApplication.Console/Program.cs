@@ -25,9 +25,19 @@ namespace flashcard_application_cs_oo
             Greetings greetings = new Greetings();
             Console.WriteLine(greetings.WelcomeMessage); // Show a welcome message.
             Console.WriteLine();  // blank line
-            Console.WriteLine("Printing Lesson summary:");
-            Lesson lesson = new Lesson();
-            Console.WriteLine(lesson.LessonSummary(Flashcards));
+            Console.WriteLine("Enter 'a' to show both front and back of each card.");
+            Console.WriteLine("Enter 'f' to show the front of each card.");
+            string userInput = Console.ReadLine();
+            if (userInput == "a")
+            {
+                Console.WriteLine("Printing Lesson summary:");
+                Lesson lesson = new Lesson();
+                Console.WriteLine(lesson.LessonSummary(Flashcards));
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that feature is not implemented yet.");
+            }
         }
     }
 }
