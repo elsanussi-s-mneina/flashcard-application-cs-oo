@@ -28,6 +28,7 @@ namespace flashcard_application_cs_oo
             Console.WriteLine("Enter 'a' to show both front and back of each card.");
             Console.WriteLine("Enter 'f' to show the front of each card.");
             Console.WriteLine("Enter 'b' to show the back of each card.");
+            Console.WriteLine("Enter 'x' to exit the application.");
             Console.Write("> "); // terminal prompt to show the user
             string userInput = Console.ReadLine();
             Lesson lesson = new Lesson();
@@ -45,6 +46,11 @@ namespace flashcard_application_cs_oo
             {
                 Console.WriteLine("Print only backs of each card:");
                 Console.WriteLine(lesson.BackSummary(Flashcards));
+            }
+            else if (userInput == "x")
+            {
+                Console.WriteLine("Exiting...");
+                System.Environment.Exit(0);
             }
             else
             {
