@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Collections.Generic;
 using FlashcardApplication.Integration;
+using static System.Console;
 
 namespace flashcard_application_cs_oo
 {
@@ -24,8 +24,8 @@ namespace flashcard_application_cs_oo
         static void Main(string[] args)
         {
             Greetings greetings = new Greetings();
-            Console.WriteLine(greetings.WelcomeMessage); // Show a welcome message.
-            Console.WriteLine();  // blank line
+            WriteLine(greetings.WelcomeMessage); // Show a welcome message.
+            WriteLine();  // blank line
             StartCommandLineLoop();
         }
 
@@ -33,45 +33,45 @@ namespace flashcard_application_cs_oo
         {
             while (true)
             {
-                Console.WriteLine("Enter 'a' to show both front and back of each card.");
-                Console.WriteLine("Enter 'f' to show the front of each card.");
-                Console.WriteLine("Enter 'b' to show the back of each card.");
-                Console.WriteLine("Enter 'save' to save all flashcards");
-                Console.WriteLine("Enter 'x' to exit the application.");
-                Console.Write("> "); // terminal prompt to show the user
-                string userInput = Console.ReadLine();
+                WriteLine("Enter 'a' to show both front and back of each card.");
+                WriteLine("Enter 'f' to show the front of each card.");
+                WriteLine("Enter 'b' to show the back of each card.");
+                WriteLine("Enter 'save' to save all flashcards");
+                WriteLine("Enter 'x' to exit the application.");
+                Write("> "); // terminal prompt to show the user
+                string userInput = ReadLine();
                 Lesson lesson = new Lesson();
 
                 switch (userInput)
                 {
                     case "a":
-                        Console.WriteLine("Printing Lesson summary:");
-                        Console.WriteLine(lesson.LessonSummary(Flashcards));
+                        WriteLine("Printing Lesson summary:");
+                        WriteLine(lesson.LessonSummary(Flashcards));
                         break;
                     case "f":
-                        Console.WriteLine("Print only fronts of each card:");
-                        Console.WriteLine(lesson.FrontSummary(Flashcards));
+                        WriteLine("Print only fronts of each card:");
+                        WriteLine(lesson.FrontSummary(Flashcards));
                         break;
                     case "b":
-                        Console.WriteLine("Print only backs of each card:");
-                        Console.WriteLine(lesson.BackSummary(Flashcards));
+                        WriteLine("Print only backs of each card:");
+                        WriteLine(lesson.BackSummary(Flashcards));
                         break;
                     case "save":
                         // Let the user choose the file name.
-                        Console.WriteLine("Enter a name for a file to save to:");
-                        Console.Write("> ");
-                        string fileName = Console.ReadLine();
+                        WriteLine("Enter a name for a file to save to:");
+                        Write("> ");
+                        string fileName = ReadLine();
 
-                        Console.WriteLine("Saving flashcards to file called '" + fileName + "'");
+                        WriteLine("Saving flashcards to file called '" + fileName + "'");
                         File.WriteAllText(fileName, lesson.TabSeparatedValues(Flashcards));
-                        Console.WriteLine("Done writing to file named " + fileName);
+                        WriteLine("Done writing to file named " + fileName);
                         break;
                     case "x":
-                        Console.WriteLine("Exiting...");
+                        WriteLine("Exiting...");
                         System.Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Unrecognized input: (" + userInput + ")");
+                        WriteLine("Unrecognized input: (" + userInput + ")");
                         break;
                 }
             }
