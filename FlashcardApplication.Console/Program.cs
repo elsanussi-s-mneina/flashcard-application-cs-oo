@@ -23,8 +23,7 @@ namespace flashcard_application_cs_oo
         /// </summary>
         static void Main(string[] args)
         {
-            Greetings greetings = new Greetings();
-            WriteLine(greetings.WelcomeMessage); // Show a welcome message.
+            WriteLine("Welcome to Remember the Letter (C# object-oriented)");
             WriteLine();  // blank line
             StartCommandLineLoop();
         }
