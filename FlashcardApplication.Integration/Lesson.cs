@@ -4,24 +4,22 @@ namespace FlashcardApplication.Integration
 {
     public class Lesson
     {
-        private const string Flashcard1 = "the" + " | " + "le/la";
-        private const string Flashcard2 = "a" + " | " + "un/une";
-        private readonly IList<string> Flashcards = new List<string> { Flashcard1, Flashcard2};
+        private IList<Flashcard> Flashcards =
+            new List<Flashcard>
+            {
+                new Flashcard("the", "le/la"),
+                new Flashcard("a", "un/une")
+            };
 
         public string LessonSummary()
         {
             string result = string.Empty;
-            foreach (string flashcard in Flashcards)
+            foreach (Flashcard flashcard in Flashcards)
             {
-                result += ShowFlashcard(flashcard) + "\n";
+                result += flashcard + "\n";
             }
 
             return result;
-        }
-
-        public string ShowFlashcard(string flashcard)
-        {
-            return flashcard;
         }
     }
 }
