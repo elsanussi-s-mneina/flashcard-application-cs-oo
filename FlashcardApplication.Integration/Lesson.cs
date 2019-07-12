@@ -7,7 +7,12 @@ namespace FlashcardApplication.Integration
 
         public string LessonSummary()
         {
-            return Flashcard1 + " \n " + Flashcard2 + "\n";
+            return ShowFlashcard(Flashcard1) + ShowFlashcard(Flashcard2);
+        }
+
+        public string ShowFlashcard(string flashcard)
+        {
+            return flashcard + " \n ";
         }
     }
 }

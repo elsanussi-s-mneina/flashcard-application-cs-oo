@@ -9,7 +9,7 @@ namespace Tests
         public void LessonSummary_ShouldReturnExactlyTheValue_ForTwoFlashcards()
         {
             Lesson lesson = new Lesson();
-            Assert.AreEqual(lesson.LessonSummary(), "the | le/la \n a | un/une\n");
+            Assert.That(lesson.LessonSummary(), Is.EqualTo("the | le/la \n a | un/une \n "));
         }
     }
 }
