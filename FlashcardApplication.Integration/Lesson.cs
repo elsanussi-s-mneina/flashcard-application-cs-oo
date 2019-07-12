@@ -4,17 +4,10 @@ namespace FlashcardApplication.Integration
 {
     public class Lesson
     {
-        private IList<Flashcard> Flashcards =
-            new List<Flashcard>
-            {
-                new Flashcard("the", "le/la"),
-                new Flashcard("a", "un/une")
-            };
-
-        public string LessonSummary()
+        public string LessonSummary(IList<Flashcard> flashcards)
         {
             string result = string.Empty;
-            foreach (Flashcard flashcard in Flashcards)
+            foreach (Flashcard flashcard in flashcards)
             {
                 result += flashcard + "\n";
             }
