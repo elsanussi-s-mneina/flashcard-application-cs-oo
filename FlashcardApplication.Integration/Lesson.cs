@@ -56,5 +56,18 @@ namespace FlashcardApplication.Integration
 
             return result;
         }
+
+        /// <summary>
+        /// Convert the flashcards to a tab separated values format.
+        /// </summary>
+        public string TabSeparatedValues(IList<Flashcard> flashcards)
+        {
+            string result = string.Empty;
+            foreach (Flashcard flashcard in flashcards)
+            {
+                result += flashcard.TabSeparatedValues();
+            }
+            return result;
+        }
     }
 }

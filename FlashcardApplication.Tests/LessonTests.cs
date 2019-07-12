@@ -71,5 +71,27 @@ namespace Tests
             Assert.That(result, Is.EqualTo("red\nblue\n"));
         }
 
+        [Test]
+        public void TabSeparatedValues_WhenGivenAnEmptyList_ReturnsAnEmptyString()
+        {
+            var flashcards = new List<Flashcard>();
+            var lesson = new Lesson();
+            string result = lesson.TabSeparatedValues(flashcards);
+            Assert.That(result, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        public void TabSeparatedValues_WhenGivenAThreeElementList()
+        {
+            var flashcards = new List<Flashcard>();
+            flashcards.Add(new Flashcard("a", "1"));
+            flashcards.Add(new Flashcard("ab", "2"));
+            flashcards.Add(new Flashcard("abc", "3"));
+            var lesson = new Lesson();
+            string result = lesson.TabSeparatedValues(flashcards);
+            Assert.That(result, Is.EqualTo("a\t1\nab\t2\nabc\t3\n"));
+        }
+
+
     }
 }

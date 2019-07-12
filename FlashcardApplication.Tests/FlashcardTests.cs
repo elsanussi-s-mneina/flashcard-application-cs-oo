@@ -50,5 +50,29 @@ namespace Tests
             string result = flashcard.ShowBack();
             Assert.That(result, Is.EqualTo(string.Empty));
         }
+
+        [Test]
+        public void TabSeparatedValues_WhenBackAndFrontAreEmpty_ReturnsATabThenANewLine()
+        {
+            Flashcard flashcard = new Flashcard(string.Empty, string.Empty);
+            string result = flashcard.TabSeparatedValues();
+            Assert.That(result, Is.EqualTo("\t\n"));
+        }
+
+        [Test]
+        public void TabSeparatedValues_WhenFrontIsTurtleAndBackIsEmpty_ReturnsTurtleThenATabThenANewLine()
+        {
+            Flashcard flashcard = new Flashcard("turtle", string.Empty);
+            string result = flashcard.TabSeparatedValues();
+            Assert.That(result, Is.EqualTo("turtle\t\n"));
+        }
+
+        [Test]
+        public void TabSeparatedValues_WhenFrontIsTurtleAndBackIsFox_ReturnsTurtleThenATabThenFoxThenANewLine()
+        {
+            Flashcard flashcard = new Flashcard("turtle", "fox");
+            string result = flashcard.TabSeparatedValues();
+            Assert.That(result, Is.EqualTo("turtle\tfox\n"));
+        }
     }
 }

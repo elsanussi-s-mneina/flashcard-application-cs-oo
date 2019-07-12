@@ -30,5 +30,13 @@ namespace FlashcardApplication.Integration
         {
             return back;
         }
+
+        /// <summary>
+        /// Convert a flashcard to tab separated values.
+        /// </summary>
+        public string TabSeparatedValues()
+        {
+            return front + "\t"  + back + "\n";
+        }
     }
 }
