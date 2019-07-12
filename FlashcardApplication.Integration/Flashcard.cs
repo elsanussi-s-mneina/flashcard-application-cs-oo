@@ -11,6 +11,9 @@
             this.back = back;
         }
 
+        /// <summary>
+        /// The front and back of a single flashcard.
+        /// </summary>
         public override string ToString()
         {
             return front + " | " + back;
