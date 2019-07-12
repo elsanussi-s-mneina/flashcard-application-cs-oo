@@ -21,7 +21,7 @@ namespace FlashcardApplication.Integration
 
         public string ShowFlashcard(string flashcard)
         {
-            return flashcard + " \n ";
+            return flashcard + "\n";
         }
     }
 }
