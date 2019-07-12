@@ -34,5 +34,21 @@ namespace Tests
             string result = flashcard.ShowFront();
             Assert.That(result, Is.EqualTo("three"));
         }
+
+        [Test]
+        public void ShowBack_WhenTheBackSideIsFive_ReturnsFive()
+        {
+            Flashcard flashcard = new Flashcard("", "five");
+            string result = flashcard.ShowBack();
+            Assert.That(result, Is.EqualTo("five"));
+        }
+
+        [Test]
+        public void ShowBack_WhenBackSideIsAnEmptyString_ReturnsEmptyString()
+        {
+            Flashcard flashcard = new Flashcard("wh", string.Empty);
+            string result = flashcard.ShowBack();
+            Assert.That(result, Is.EqualTo(string.Empty));
+        }
     }
 }

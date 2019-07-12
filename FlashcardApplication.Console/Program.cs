@@ -27,6 +27,8 @@ namespace flashcard_application_cs_oo
             Console.WriteLine();  // blank line
             Console.WriteLine("Enter 'a' to show both front and back of each card.");
             Console.WriteLine("Enter 'f' to show the front of each card.");
+            Console.WriteLine("Enter 'b' to show the back of each card.");
+
             string userInput = Console.ReadLine();
             Lesson lesson = new Lesson();
             if (userInput == "a")
@@ -34,10 +36,19 @@ namespace flashcard_application_cs_oo
                 Console.WriteLine("Printing Lesson summary:");
                 Console.WriteLine(lesson.LessonSummary(Flashcards));
             }
-            else
+            else if (userInput == "f")
             {
                 Console.WriteLine("Print only fronts of each card:");
                 Console.WriteLine(lesson.FrontSummary(Flashcards));
+            }
+            else if (userInput == "b")
+            {
+                Console.WriteLine("Print only backs of each card:");
+                Console.WriteLine(lesson.BackSummary(Flashcards));
+            }
+            else
+            {
+                Console.WriteLine("Unrecognized input: (" + userInput + ")");
             }
         }
     }

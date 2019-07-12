@@ -49,7 +49,27 @@ namespace Tests
             var lesson = new Lesson();
             string result = lesson.FrontSummary(flashcards);
             Assert.That(result, Is.EqualTo("a\nb\n"));
-
         }
+
+        [Test]
+        public void BackSummary_WhenGivenAnEmptyList_ReturnsAnEmptyString()
+        {
+            var flashcards = new List<Flashcard>();
+            var lesson = new Lesson();
+            string result = lesson.BackSummary(flashcards);
+            Assert.That(result, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        public void FrontSummary_WhenGivenAListWithTwoFlashcardsTheFirstWhoseFrontSideIsRedAndWhoseSecondCardHasAFrontSideWithBlue_ShouldReturnRedFollowedByANewLineFollowedByBlue()
+        {
+            var flashcards = new List<Flashcard>();
+            flashcards.Add(new Flashcard("a", "red"));
+            flashcards.Add(new Flashcard("b", "blue"));
+            var lesson = new Lesson();
+            string result = lesson.BackSummary(flashcards);
+            Assert.That(result, Is.EqualTo("red\nblue\n"));
+        }
+
     }
 }

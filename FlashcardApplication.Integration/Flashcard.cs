@@ -25,5 +25,10 @@ namespace FlashcardApplication.Integration
         {
             return front;
         }
+
+        public string ShowBack()
+        {
+            return back;
+        }
     }
 }
