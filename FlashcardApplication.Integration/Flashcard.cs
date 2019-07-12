@@ -38,5 +38,25 @@ namespace FlashcardApplication.Integration
         {
             return front + "\t"  + back + "\n";
         }
+
+        public static Flashcard FromTabSeparatedValues(string line)
+        {
+            string lineTrimmed = line.TrimEnd();
+            string[] parts = lineTrimmed.Split('\t');
+            string front = string.Empty;
+            string back = string.Empty;
+
+            if (parts.Length > 0)
+            {
+                front = parts[0];
+            }
+
+            if (parts.Length > 1)
+            {
+                back = parts[1];
+            }
+
+            return new Flashcard(front, back);
+        }
     }
 }

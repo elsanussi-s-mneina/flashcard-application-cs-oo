@@ -92,6 +92,19 @@ namespace Tests
             Assert.That(result, Is.EqualTo("a\t1\nab\t2\nabc\t3\n"));
         }
 
+        [Test]
+        public void FromTabSeparatedValues_WhenGivenAnEmptyString_ReturnsAnEmptyList()
+        {
+            IList<Flashcard> flashcards = Lesson.FromTabSeparatedValues(string.Empty);
+            Assert.That(flashcards, Is.Empty);
+        }
+
+        [Test]
+        public void FromTabSeparatedValues_WhenGivenThreeWellFormedLines_ReturnsAThreeElementList()
+        {
+            IList<Flashcard> flashcards = Lesson.FromTabSeparatedValues("a\tb\nc\td\ne\tf\n");
+            Assert.That(flashcards.Count, Is.EqualTo(3));
+        }
 
     }
 }

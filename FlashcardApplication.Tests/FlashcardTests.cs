@@ -74,5 +74,29 @@ namespace Tests
             string result = flashcard.TabSeparatedValues();
             Assert.That(result, Is.EqualTo("turtle\tfox\n"));
         }
+
+        [Test]
+        public void FromTabSeparatedValues_WhenGivenTurtleThenTabThenFoxThenNewLine_ShouldHaveGoodToString()
+        {
+            Flashcard flashcard = Flashcard.FromTabSeparatedValues("turtle\tfox\n");
+            string result = flashcard.ToString();
+            Assert.That(result, Is.EqualTo("turtle | fox"));
+        }
+
+        [Test]
+        public void FromTabSeparatedValues_WhenGivenRabbitThenTabThenSnailThenNewLine_ShouldHaveGoodToString()
+        {
+            Flashcard flashcard = Flashcard.FromTabSeparatedValues("rabbit\tsnail\n");
+            string result = flashcard.ToString();
+            Assert.That(result, Is.EqualTo("rabbit | snail"));
+        }
+
+        [Test]
+        public void FromTabSeparatedValues_WhenGivenRabbitThenNewLine_ShouldNotCrashButSetBackToEmptyString()
+        {
+            Flashcard flashcard = Flashcard.FromTabSeparatedValues("rabbit\n");
+            string result = flashcard.ToString();
+            Assert.That(result, Is.EqualTo("rabbit | "));
+        }
     }
 }

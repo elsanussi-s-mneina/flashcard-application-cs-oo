@@ -8,27 +8,36 @@ namespace flashcard_application_cs_oo
     class Program
     {
         /// <summary>
-        /// List of flashcards for running the program.
-        /// </summary>
-        private static IList<Flashcard> Flashcards =
-            new List<Flashcard>
-            {
-                new Flashcard("the", "le/la"),
-                new Flashcard("a", "un/une")
-            };
-
-
-        /// <summary>
         /// This program runs in the terminal. It outputs text to the student.
         /// </summary>
         static void Main(string[] args)
         {
             WriteLine("Welcome to Remember the Letter (C# object-oriented)");
             WriteLine();  // blank line
-            StartCommandLineLoop();
+
+
+            WriteLine("Enter 'open' if you want to open a lesson file");
+            WriteLine("Enter 'n' if you want to create a new lesson.");
+            WriteLine();
+            Write("> ");
+
+            string userInput = ReadLine();
+            if (userInput == "open")
+            {
+                WriteLine("Enter a name for a file to open:");
+                Write("> ");
+                string fileName = ReadLine();
+                string fileContents = File.ReadAllText(fileName);
+                IList<Flashcard> flashcards = Lesson.FromTabSeparatedValues(fileContents);
+                StartCommandLineLoop(flashcards);
+            }
+            else
+            {
+                StartCommandLineLoop(new List<Flashcard>());
+            }
         }
 
-        private static void StartCommandLineLoop()
+        private static void StartCommandLineLoop(IList<Flashcard> flashcards)
         {
             while (true)
             {
@@ -45,15 +54,15 @@ namespace flashcard_application_cs_oo
                 {
                     case "a":
                         WriteLine("Printing Lesson summary:");
-                        WriteLine(lesson.LessonSummary(Flashcards));
+                        WriteLine(lesson.LessonSummary(flashcards));
                         break;
                     case "f":
                         WriteLine("Print only fronts of each card:");
-                        WriteLine(lesson.FrontSummary(Flashcards));
+                        WriteLine(lesson.FrontSummary(flashcards));
                         break;
                     case "b":
                         WriteLine("Print only backs of each card:");
-                        WriteLine(lesson.BackSummary(Flashcards));
+                        WriteLine(lesson.BackSummary(flashcards));
                         break;
                     case "save":
                         // Let the user choose the file name.
@@ -62,7 +71,7 @@ namespace flashcard_application_cs_oo
                         string fileName = ReadLine();
 
                         WriteLine("Saving flashcards to file called '" + fileName + "'");
-                        File.WriteAllText(fileName, lesson.TabSeparatedValues(Flashcards));
+                        File.WriteAllText(fileName, lesson.TabSeparatedValues(flashcards));
                         WriteLine("Done writing to file named " + fileName);
                         break;
                     case "x":

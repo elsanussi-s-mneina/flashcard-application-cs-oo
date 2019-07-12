@@ -69,5 +69,29 @@ namespace FlashcardApplication.Integration
             }
             return result;
         }
+
+        /// <summary>
+        /// Convert tab separated values to a list of flashcards.
+        /// </summary>
+        /// <param name="contents">text with as many lines as there are flashcards.</param>
+        /// <returns>a list of flashcards</returns>
+        public static IList<Flashcard> FromTabSeparatedValues(string contents)
+        {
+            var flashcards = new List<Flashcard>();
+            if (string.IsNullOrEmpty(contents))
+            {
+                return flashcards;
+            }
+            string[] lines = contents.Split(new char[] {'\n'});
+
+            foreach (string line in lines)
+            {
+                if (!string.IsNullOrEmpty(line))
+                {
+                    flashcards.Add(Flashcard.FromTabSeparatedValues(line));
+                }
+            }
+            return flashcards;
+        }
     }
 }
