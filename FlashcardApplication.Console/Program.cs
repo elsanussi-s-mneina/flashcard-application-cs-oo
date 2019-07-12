@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using FlashcardApplication.Integration;
 
@@ -58,9 +59,14 @@ namespace flashcard_application_cs_oo
                 }
                 else if (userInput == "save")
                 {
-                    Console.WriteLine("Saving flashcards to file called 'Lesson.tsv'");
-                    System.IO.File.WriteAllText("Lesson.tsv", lesson.TabSeparatedValues(Flashcards));
-                    Console.WriteLine("Done writing to file.");
+                    // Let the user choose the file name.
+                    Console.WriteLine("Enter a name for a file to save to:");
+                    Console.Write("> ");
+                    string fileName = Console.ReadLine();
+
+                    Console.WriteLine("Saving flashcards to file called '" + fileName + "'");
+                    File.WriteAllText(fileName, lesson.TabSeparatedValues(Flashcards));
+                    Console.WriteLine("Done writing to file named " + fileName);
                 }
                 else if (userInput == "x")
                 {
