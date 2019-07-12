@@ -13,7 +13,7 @@ namespace FlashcardApplication.Integration
             string result = string.Empty;
             foreach (string flashcard in Flashcards)
             {
-                result += ShowFlashcard(flashcard);
+                result += ShowFlashcard(flashcard) + "\n";
             }
 
             return result;
@@ -21,7 +21,7 @@ namespace FlashcardApplication.Integration
 
         public string ShowFlashcard(string flashcard)
         {
-            return flashcard + "\n";
+            return flashcard;
         }
     }
 }
