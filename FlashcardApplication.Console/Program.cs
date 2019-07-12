@@ -42,40 +42,37 @@ namespace flashcard_application_cs_oo
                 string userInput = Console.ReadLine();
                 Lesson lesson = new Lesson();
 
-                if (userInput == "a")
+                switch (userInput)
                 {
-                    Console.WriteLine("Printing Lesson summary:");
-                    Console.WriteLine(lesson.LessonSummary(Flashcards));
-                }
-                else if (userInput == "f")
-                {
-                    Console.WriteLine("Print only fronts of each card:");
-                    Console.WriteLine(lesson.FrontSummary(Flashcards));
-                }
-                else if (userInput == "b")
-                {
-                    Console.WriteLine("Print only backs of each card:");
-                    Console.WriteLine(lesson.BackSummary(Flashcards));
-                }
-                else if (userInput == "save")
-                {
-                    // Let the user choose the file name.
-                    Console.WriteLine("Enter a name for a file to save to:");
-                    Console.Write("> ");
-                    string fileName = Console.ReadLine();
+                    case "a":
+                        Console.WriteLine("Printing Lesson summary:");
+                        Console.WriteLine(lesson.LessonSummary(Flashcards));
+                        break;
+                    case "f":
+                        Console.WriteLine("Print only fronts of each card:");
+                        Console.WriteLine(lesson.FrontSummary(Flashcards));
+                        break;
+                    case "b":
+                        Console.WriteLine("Print only backs of each card:");
+                        Console.WriteLine(lesson.BackSummary(Flashcards));
+                        break;
+                    case "save":
+                        // Let the user choose the file name.
+                        Console.WriteLine("Enter a name for a file to save to:");
+                        Console.Write("> ");
+                        string fileName = Console.ReadLine();
 
-                    Console.WriteLine("Saving flashcards to file called '" + fileName + "'");
-                    File.WriteAllText(fileName, lesson.TabSeparatedValues(Flashcards));
-                    Console.WriteLine("Done writing to file named " + fileName);
-                }
-                else if (userInput == "x")
-                {
-                    Console.WriteLine("Exiting...");
-                    System.Environment.Exit(0);
-                }
-                else
-                {
-                    Console.WriteLine("Unrecognized input: (" + userInput + ")");
+                        Console.WriteLine("Saving flashcards to file called '" + fileName + "'");
+                        File.WriteAllText(fileName, lesson.TabSeparatedValues(Flashcards));
+                        Console.WriteLine("Done writing to file named " + fileName);
+                        break;
+                    case "x":
+                        Console.WriteLine("Exiting...");
+                        System.Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Unrecognized input: (" + userInput + ")");
+                        break;
                 }
             }
         }
