@@ -13,6 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FlashcardApplication.Integration\FlashcardApplication.Integration.csproj" />
+    <ProjectReference Include="..\FlashcardApplication.Console\FlashcardApplication.Console.csproj" />
   </ItemGroup>
 </Project>

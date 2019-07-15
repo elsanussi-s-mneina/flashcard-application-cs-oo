@@ -1,5 +1,5 @@
 # flashcard-application-cs-oo
-Goal: create a flashcard application in C#, using the object-oriented paradigm.
+Goal: create a flashcard application in C#, using the procedural paradigm.
 
 
 The project 'FlashcardApplication.Console' was created using the following command:

@@ -6,5 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Greetings.cs" />
+    <Compile Remove="Flashcard.cs" />
+    <Compile Remove="Flashcard.cs" />
+    <Compile Remove="Lesson.cs" />
   </ItemGroup>
 </Project>
