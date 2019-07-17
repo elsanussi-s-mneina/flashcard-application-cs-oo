@@ -67,11 +67,11 @@ namespace flashcard_application_cs_oo
                         break;
                     case "add":
                         WriteLine("Adding a flashcard...");
-                        Write("Enter the front side >");
+                        Write("Enter the front side > ");
                         string fSide = ReadLine();
                         WriteLine("You entered the following for the front side: (" +
                                   fSide + ")");
-                        Write("Enter the back side >");
+                        Write("Enter the back side > ");
                         string bSide = ReadLine();
                         WriteLine("You entered the following for the back side: (" +
                                   bSide + ")");
