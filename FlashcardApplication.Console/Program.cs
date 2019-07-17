@@ -19,13 +19,13 @@ namespace flashcard_application_cs_oo
             WriteLine("Enter 'open' if you want to open a lesson file");
             WriteLine("Enter 'n' if you want to create a new lesson.");
             WriteLine();
-            Write("> ");
+            PrintPrompt();
 
             string userInput = ReadLine();
             if (userInput == "open")
             {
                 WriteLine("Enter a name for a file to open:");
-                Write("> ");
+                PrintPrompt();
                 string fileName = ReadLine();
                 string fileContents = File.ReadAllText(fileName);
                 IList<Flashcard> flashcards = Lesson.FromTabSeparatedValues(fileContents);
@@ -35,6 +35,11 @@ namespace flashcard_application_cs_oo
             {
                 StartCommandLineLoop(new List<Flashcard>());
             }
+        }
+
+        private static void PrintPrompt()
+        {
+            Write("> "); // terminal prompt to show the user
         }
 
         private static void StartCommandLineLoop(IList<Flashcard> flashcards)
@@ -47,7 +52,7 @@ namespace flashcard_application_cs_oo
                 WriteLine("Enter 'add' to add a flashcard.");
                 WriteLine("Enter 'save' to save all flashcards");
                 WriteLine("Enter 'x' to exit the application.");
-                Write("> "); // terminal prompt to show the user
+                PrintPrompt();
                 string userInput = ReadLine();
                 Lesson lesson = new Lesson();
 
@@ -67,11 +72,13 @@ namespace flashcard_application_cs_oo
                         break;
                     case "add":
                         WriteLine("Adding a flashcard...");
-                        Write("Enter the front side > ");
+                        WriteLine("Enter the front side:");
+                        PrintPrompt();
                         string fSide = ReadLine();
                         WriteLine("You entered the following for the front side: (" +
                                   fSide + ")");
-                        Write("Enter the back side > ");
+                        WriteLine("Enter the back side:");
+                        PrintPrompt();
                         string bSide = ReadLine();
                         WriteLine("You entered the following for the back side: (" +
                                   bSide + ")");
@@ -81,7 +88,7 @@ namespace flashcard_application_cs_oo
                     case "save":
                         // Let the user choose the file name.
                         WriteLine("Enter a name for a file to save to:");
-                        Write("> ");
+                        PrintPrompt();
                         string fileName = ReadLine();
 
                         WriteLine("Saving flashcards to file called '" + fileName + "'");
