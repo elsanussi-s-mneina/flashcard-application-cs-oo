@@ -44,6 +44,7 @@ namespace flashcard_application_cs_oo
                 WriteLine("Enter 'a' to show both front and back of each card.");
                 WriteLine("Enter 'f' to show the front of each card.");
                 WriteLine("Enter 'b' to show the back of each card.");
+                WriteLine("Enter 'add' to add a flashcard.");
                 WriteLine("Enter 'save' to save all flashcards");
                 WriteLine("Enter 'x' to exit the application.");
                 Write("> "); // terminal prompt to show the user
@@ -63,6 +64,19 @@ namespace flashcard_application_cs_oo
                     case "b":
                         WriteLine("Print only backs of each card:");
                         WriteLine(lesson.BackSummary(flashcards));
+                        break;
+                    case "add":
+                        WriteLine("Adding a flashcard...");
+                        Write("Enter the front side >");
+                        string fSide = ReadLine();
+                        WriteLine("You entered the following for the front side: (" +
+                                  fSide + ")");
+                        Write("Enter the back side >");
+                        string bSide = ReadLine();
+                        WriteLine("You entered the following for the back side: (" +
+                                  bSide + ")");
+                        flashcards.Add(new Flashcard(fSide, bSide));
+                        WriteLine("Done adding flashcard.");
                         break;
                     case "save":
                         // Let the user choose the file name.
