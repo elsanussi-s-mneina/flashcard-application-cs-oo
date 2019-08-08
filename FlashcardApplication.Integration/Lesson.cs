@@ -65,12 +65,9 @@ namespace FlashcardApplication.Integration
         /// </summary>
         public string TabSeparatedValues(IList<Flashcard> flashcards)
         {
-            string result = string.Empty;
-            foreach (Flashcard flashcard in flashcards)
-            {
-                result += flashcard.TabSeparatedValues();
-            }
-            return result;
+            return flashcards.Select((f1) => f1.TabSeparatedValues())
+                             .DefaultIfEmpty(string.Empty)
+                             .Aggregate((x, y) => x + y);
         }
 
         /// <summary>
