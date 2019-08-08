@@ -17,8 +17,26 @@ namespace FlashcardApplication.Integration
         /// <returns></returns>
         public string LessonSummary(IList<Flashcard> flashcards)
         {
-            return flashcards.Select((f1) => f1.ToString() + "\n")
-                             .Aggregate((x,y) => x + y);
+            return ApplyToAndSeparate(flashcards, f => f.ToString());
+        }
+
+
+
+        /// <summary>
+        /// Apply a function to each flashcard, and put a
+        /// line separator after the result of the function.
+        /// </summary>
+        /// <param name="flashcards">a list of flashcards</param>
+        /// <param name="flashcardToString">a function that takes
+        /// a flashcard and returns a string</param>
+        /// <returns>something about each flashcard</returns>
+        private string ApplyToAndSeparate(
+             IList<Flashcard> flashcards,
+             Func<Flashcard, String> flashcardToString)
+        {
+            return flashcards.Select((f1) => flashcardToString(f1) + "\n")
+                 .DefaultIfEmpty(string.Empty)
+                 .Aggregate((x, y) => x + y);
         }
 
 
@@ -29,11 +47,7 @@ namespace FlashcardApplication.Integration
         /// <returns>front of a card then a new line then the front of the next card, and so on</returns>
         public string FrontSummary(IList<Flashcard> flashcards)
         {
-            return
-                flashcards
-                .Select((f1) => f1.ShowFront() + "\n")
-                .DefaultIfEmpty(string.Empty)
-                .Aggregate((x, y) => x + y);
+            return ApplyToAndSeparate(flashcards, f => f.ShowFront());
         }
 
         /// <summary>
@@ -43,9 +57,7 @@ namespace FlashcardApplication.Integration
         /// <returns>back of a card then a new line then the back of the next card, and so on</returns>
         public string BackSummary(IList<Flashcard> flashcards)
         {
-            return flashcards.Select((f1) => f1.ShowBack() + "\n")
-                 .DefaultIfEmpty(string.Empty)
-                 .Aggregate((x, y) => x + y);
+            return ApplyToAndSeparate(flashcards, f => f.ShowBack());
         }
 
         /// <summary>
