@@ -4,8 +4,8 @@ namespace FlashcardApplication.Integration
 {
     public class Flashcard
     {
-        private string front;
-        private string back;
+        private readonly string front;
+        private readonly string back;
 
         public Flashcard(string front, string back)
         {
@@ -39,24 +39,25 @@ namespace FlashcardApplication.Integration
             return front + "\t"  + back + "\n";
         }
 
+
         public static Flashcard FromTabSeparatedValues(string line)
         {
-            string lineTrimmed = line.TrimEnd();
-            string[] parts = lineTrimmed.Split('\t');
-            string front = string.Empty;
-            string back = string.Empty;
+            return FromParts(line.TrimEnd()
+                                 .Split('\t'));
+        }
 
-            if (parts.Length > 0)
-            {
-                front = parts[0];
-            }
+        private static Flashcard FromParts(string[] parts)
+        {
+            return new Flashcard(ElementOrEmptyString(parts, 0),
+                                 ElementOrEmptyString(parts, 1));
+        }
 
-            if (parts.Length > 1)
-            {
-                back = parts[1];
-            }
-
-            return new Flashcard(front, back);
+        private static String ElementOrEmptyString(string[] parts, int index)
+        {
+            if (parts.Length > index)
+                return parts[index];
+            else
+                return string.Empty;
         }
     }
 }
