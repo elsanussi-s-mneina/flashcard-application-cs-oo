@@ -77,21 +77,11 @@ namespace FlashcardApplication.Integration
         /// <returns>a list of flashcards</returns>
         public static IList<Flashcard> FromTabSeparatedValues(string contents)
         {
-            var flashcards = new List<Flashcard>();
-            if (string.IsNullOrEmpty(contents))
-            {
-                return flashcards;
-            }
-            string[] lines = contents.Split(new char[] {'\n'});
-
-            foreach (string line in lines)
-            {
-                if (!string.IsNullOrEmpty(line))
-                {
-                    flashcards.Add(Flashcard.FromTabSeparatedValues(line));
-                }
-            }
-            return flashcards;
+            return contents
+                   .Split(new char[] {'\n'})
+                   .Where((line) => !string.IsNullOrEmpty(line))
+                   .Select((line) => Flashcard.FromTabSeparatedValues(line))
+                   .ToList();
         }
     }
 }
