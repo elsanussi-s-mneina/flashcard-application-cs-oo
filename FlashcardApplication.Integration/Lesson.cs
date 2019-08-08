@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FlashcardApplication.Integration
 {
@@ -16,14 +17,10 @@ namespace FlashcardApplication.Integration
         /// <returns></returns>
         public string LessonSummary(IList<Flashcard> flashcards)
         {
-            string result = string.Empty;
-            foreach (Flashcard flashcard in flashcards)
-            {
-                result += flashcard + "\n";
-            }
-
-            return result;
+            return flashcards.Select((f1) => f1.ToString() + "\n")
+                             .Aggregate((x,y) => x + y);
         }
+
 
         /// <summary>
         /// The front of every flashcard in a given list.
@@ -32,13 +29,11 @@ namespace FlashcardApplication.Integration
         /// <returns>front of a card then a new line then the front of the next card, and so on</returns>
         public string FrontSummary(IList<Flashcard> flashcards)
         {
-            string result = string.Empty;
-            foreach (Flashcard flashcard in flashcards)
-            {
-                result += flashcard.ShowFront() + "\n";
-            }
-
-            return result;
+            return
+                flashcards
+                .Select((f1) => f1.ShowFront() + "\n")
+                .DefaultIfEmpty(string.Empty)
+                .Aggregate((x, y) => x + y);
         }
 
         /// <summary>
@@ -48,13 +43,9 @@ namespace FlashcardApplication.Integration
         /// <returns>back of a card then a new line then the back of the next card, and so on</returns>
         public string BackSummary(IList<Flashcard> flashcards)
         {
-            string result = string.Empty;
-            foreach (Flashcard flashcard in flashcards)
-            {
-                result += flashcard.ShowBack() + "\n";
-            }
-
-            return result;
+            return flashcards.Select((f1) => f1.ShowBack() + "\n")
+                 .DefaultIfEmpty(string.Empty)
+                 .Aggregate((x, y) => x + y);
         }
 
         /// <summary>
