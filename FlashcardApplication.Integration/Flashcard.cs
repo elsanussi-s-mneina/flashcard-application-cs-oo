@@ -19,7 +19,7 @@ namespace FlashcardApplication.Integration
         public static Func<Flashcard, string> ShowBothSides =
         (flashcard) =>
         {
-            return flashcard.front + " | " + flashcard.back;
+            return $"{flashcard.front} | {flashcard.back}";
         };
 
 
@@ -41,7 +41,7 @@ namespace FlashcardApplication.Integration
         public static Func<Flashcard, string> TabSeparatedValues =
         (flashcard) =>
         {
-            return flashcard.front + "\t" + flashcard.back + "\n";
+            return $"{flashcard.front}\t{flashcard.back}\n";
         };
 
 
