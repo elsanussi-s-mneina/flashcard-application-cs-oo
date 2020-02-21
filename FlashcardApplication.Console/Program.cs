@@ -35,74 +35,76 @@ namespace flashcard_application_cs_oo
             {
                 StartCommandLineLoop(new List<Flashcard>());
             }
-        }
 
-        private static void PrintPrompt()
-        {
-            Write("> "); // terminal prompt to show the user
-        }
-
-        private static void StartCommandLineLoop(IList<Flashcard> flashcards)
-        {
-            while (true)
+            static void PrintPrompt()
             {
-                WriteLine("Enter 'a' to show both front and back of each card.");
-                WriteLine("Enter 'f' to show the front of each card.");
-                WriteLine("Enter 'b' to show the back of each card.");
-                WriteLine("Enter 'add' to add a flashcard.");
-                WriteLine("Enter 'save' to save all flashcards");
-                WriteLine("Enter 'x' to exit the application.");
-                PrintPrompt();
-                string userInput = ReadLine();
+                Write("> "); // terminal prompt to show the user
+            }
 
-                switch (userInput)
+            static void StartCommandLineLoop(IList<Flashcard> flashcards)
+            {
+                while (true)
                 {
-                    case "a":
-                        WriteLine("Printing Lesson summary:");
-                        WriteLine(Lesson.LessonSummary(flashcards));
-                        break;
-                    case "f":
-                        WriteLine("Print only fronts of each card:");
-                        WriteLine(Lesson.FrontSummary(flashcards));
-                        break;
-                    case "b":
-                        WriteLine("Print only backs of each card:");
-                        WriteLine(Lesson.BackSummary(flashcards));
-                        break;
-                    case "add":
-                        WriteLine("Adding a flashcard...");
-                        WriteLine("Enter the front side:");
-                        PrintPrompt();
-                        string fSide = ReadLine();
-                        WriteLine("You entered the following for the front side: (" +
-                                  fSide + ")");
-                        WriteLine("Enter the back side:");
-                        PrintPrompt();
-                        string bSide = ReadLine();
-                        WriteLine("You entered the following for the back side: (" +
-                                  bSide + ")");
-                        flashcards.Add(new Flashcard(fSide, bSide));
-                        WriteLine("Done adding flashcard.");
-                        break;
-                    case "save":
-                        // Let the user choose the file name.
-                        WriteLine("Enter a name for a file to save to:");
-                        PrintPrompt();
-                        string fileName = ReadLine();
+                    WriteLine("Enter 'a' to show both front and back of each card.");
+                    WriteLine("Enter 'f' to show the front of each card.");
+                    WriteLine("Enter 'b' to show the back of each card.");
+                    WriteLine("Enter 'add' to add a flashcard.");
+                    WriteLine("Enter 'save' to save all flashcards");
+                    WriteLine("Enter 'x' to exit the application.");
+                    PrintPrompt();
+                    string userInput = ReadLine();
 
-                        WriteLine("Saving flashcards to file called '" + fileName + "'");
-                        File.WriteAllText(fileName, Lesson.TabSeparatedValues(flashcards));
-                        WriteLine("Done writing to file named " + fileName);
-                        break;
-                    case "x":
-                        WriteLine("Exiting...");
-                        System.Environment.Exit(0);
-                        break;
-                    default:
-                        WriteLine("Unrecognized input: (" + userInput + ")");
-                        break;
+                    switch (userInput)
+                    {
+                        case "a":
+                            WriteLine("Printing Lesson summary:");
+                            WriteLine(Lesson.LessonSummary(flashcards));
+                            break;
+                        case "f":
+                            WriteLine("Print only fronts of each card:");
+                            WriteLine(Lesson.FrontSummary(flashcards));
+                            break;
+                        case "b":
+                            WriteLine("Print only backs of each card:");
+                            WriteLine(Lesson.BackSummary(flashcards));
+                            break;
+                        case "add":
+                            WriteLine("Adding a flashcard...");
+                            WriteLine("Enter the front side:");
+                            PrintPrompt();
+                            string fSide = ReadLine();
+                            WriteLine("You entered the following for the front side: (" +
+                                      fSide + ")");
+                            WriteLine("Enter the back side:");
+                            PrintPrompt();
+                            string bSide = ReadLine();
+                            WriteLine("You entered the following for the back side: (" +
+                                      bSide + ")");
+                            flashcards.Add(new Flashcard(fSide, bSide));
+                            WriteLine("Done adding flashcard.");
+                            break;
+                        case "save":
+                            // Let the user choose the file name.
+                            WriteLine("Enter a name for a file to save to:");
+                            PrintPrompt();
+                            string fileName = ReadLine();
+
+                            WriteLine("Saving flashcards to file called '" + fileName + "'");
+                            File.WriteAllText(fileName, Lesson.TabSeparatedValues(flashcards));
+                            WriteLine("Done writing to file named " + fileName);
+                            break;
+                        case "x":
+                            WriteLine("Exiting...");
+                            System.Environment.Exit(0);
+                            break;
+                        default:
+                            WriteLine("Unrecognized input: (" + userInput + ")");
+                            break;
+                    }
                 }
             }
         }
+
+
     }
 }
