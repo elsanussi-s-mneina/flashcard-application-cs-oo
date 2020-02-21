@@ -4,8 +4,8 @@ namespace FlashcardApplication.Integration
 {
     public class Flashcard
     {
-        private readonly string front;
-        private readonly string back;
+        public readonly string front;
+        public readonly string back;
 
         public Flashcard(string front, string back)
         {
@@ -16,48 +16,56 @@ namespace FlashcardApplication.Integration
         /// <summary>
         /// The front and back of a single flashcard.
         /// </summary>
-        public override string ToString()
+        public static Func<Flashcard, string> ShowBothSides =
+        (flashcard) =>
         {
-            return front + " | " + back;
-        }
+            return flashcard.front + " | " + flashcard.back;
+        };
 
-        public string ShowFront()
-        {
-            return front;
-        }
 
-        public string ShowBack()
+        public static Func<Flashcard, string> ShowFront =
+        (flashcard) =>
         {
-            return back;
-        }
+            return flashcard.front;
+        };
+
+        public static Func<Flashcard, string> ShowBack =
+        (flashcard) =>
+        {
+            return flashcard.back;
+        };
 
         /// <summary>
         /// Convert a flashcard to tab separated values.
         /// </summary>
-        public string TabSeparatedValues()
+        public static Func<Flashcard, string> TabSeparatedValues =
+        (flashcard) =>
         {
-            return front + "\t"  + back + "\n";
-        }
+            return flashcard.front + "\t" + flashcard.back + "\n";
+        };
 
 
-        public static Flashcard FromTabSeparatedValues(string line)
+        public static Func<string, Flashcard> FromTabSeparatedValues =
+        (line) =>
         {
             return FromParts(line.TrimEnd()
                                  .Split('\t'));
-        }
+        };
 
-        private static Flashcard FromParts(string[] parts)
+        private static Func<string[], Flashcard> FromParts =
+        (parts) =>
         {
             return new Flashcard(ElementOrEmptyString(parts, 0),
                                  ElementOrEmptyString(parts, 1));
-        }
+        };
 
-        private static String ElementOrEmptyString(string[] parts, int index)
+        private static Func<string[], int, String> ElementOrEmptyString =
+        (parts, index) =>
         {
             if (parts.Length > index)
                 return parts[index];
             else
                 return string.Empty;
-        }
+        };
     }
 }

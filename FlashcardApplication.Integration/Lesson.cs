@@ -23,7 +23,7 @@ namespace FlashcardApplication.Integration
         public static Func<IList<Flashcard>, string> LessonSummary =
         (flashcards) =>
         {
-            return ApplyToAndSeparate(flashcards, f => f.ToString());
+            return ApplyToAndSeparate(flashcards, Flashcard.ShowBothSides);
         };
 
 
@@ -54,7 +54,7 @@ namespace FlashcardApplication.Integration
         public static Func<IList<Flashcard>, string> FrontSummary =
         (flashcards) =>
         {
-            return ApplyToAndSeparate(flashcards, f => f.ShowFront());
+            return ApplyToAndSeparate(flashcards, Flashcard.ShowFront);
         };
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace FlashcardApplication.Integration
         public static Func<IList<Flashcard>, string> BackSummary =
         (flashcards) =>
         {
-            return ApplyToAndSeparate(flashcards, f => f.ShowBack());
+            return ApplyToAndSeparate(flashcards, Flashcard.ShowBack);
         };
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace FlashcardApplication.Integration
         public static Func<IList<Flashcard>, string> TabSeparatedValues =
         (flashcards) =>
         {
-            return flashcards.Select((f1) => f1.TabSeparatedValues())
+            return flashcards.Select((f1) => Flashcard.TabSeparatedValues(f1))
                              .DefaultIfEmpty(string.Empty)
                              .Aggregate((x, y) => x + y);
         };
