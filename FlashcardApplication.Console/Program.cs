@@ -54,21 +54,20 @@ namespace flashcard_application_cs_oo
                 WriteLine("Enter 'x' to exit the application.");
                 PrintPrompt();
                 string userInput = ReadLine();
-                Lesson lesson = new Lesson();
 
                 switch (userInput)
                 {
                     case "a":
                         WriteLine("Printing Lesson summary:");
-                        WriteLine(lesson.LessonSummary(flashcards));
+                        WriteLine(Lesson.LessonSummary(flashcards));
                         break;
                     case "f":
                         WriteLine("Print only fronts of each card:");
-                        WriteLine(lesson.FrontSummary(flashcards));
+                        WriteLine(Lesson.FrontSummary(flashcards));
                         break;
                     case "b":
                         WriteLine("Print only backs of each card:");
-                        WriteLine(lesson.BackSummary(flashcards));
+                        WriteLine(Lesson.BackSummary(flashcards));
                         break;
                     case "add":
                         WriteLine("Adding a flashcard...");
@@ -92,7 +91,7 @@ namespace flashcard_application_cs_oo
                         string fileName = ReadLine();
 
                         WriteLine("Saving flashcards to file called '" + fileName + "'");
-                        File.WriteAllText(fileName, lesson.TabSeparatedValues(flashcards));
+                        File.WriteAllText(fileName, Lesson.TabSeparatedValues(flashcards));
                         WriteLine("Done writing to file named " + fileName);
                         break;
                     case "x":
