@@ -17,9 +17,7 @@ namespace FlashcardApplication.Integration
         /// <returns></returns>
         public static Func<IList<Flashcard>, string> LessonSummary =
         (flashcards) =>
-        {
-            return ApplyToAndSeparate(flashcards, Flashcard.ShowBothSides);
-        };
+                 ApplyToAndSeparate(flashcards, Flashcard.ShowBothSides);
 
 
 
@@ -34,11 +32,9 @@ namespace FlashcardApplication.Integration
         private static Func<IList<Flashcard>, Func<Flashcard, String>, string>
         ApplyToAndSeparate =
         (flashcards, flashcardToString) =>
-        {
-            return flashcards.Select((f1) => flashcardToString(f1) + "\n")
+                    flashcards.Select((f1) => flashcardToString(f1) + "\n")
                     .DefaultIfEmpty(string.Empty)
                     .Aggregate((x, y) => x + y);
-        };
         
 
         /// <summary>
@@ -48,9 +44,7 @@ namespace FlashcardApplication.Integration
         /// <returns>front of a card then a new line then the front of the next card, and so on</returns>
         public static Func<IList<Flashcard>, string> FrontSummary =
         (flashcards) =>
-        {
-            return ApplyToAndSeparate(flashcards, Flashcard.ShowFront);
-        };
+                 ApplyToAndSeparate(flashcards, Flashcard.ShowFront);
 
         /// <summary>
         /// The back of every flashcard in a given list.
@@ -59,20 +53,16 @@ namespace FlashcardApplication.Integration
         /// <returns>back of a card then a new line then the back of the next card, and so on</returns>
         public static Func<IList<Flashcard>, string> BackSummary =
         (flashcards) =>
-        {
-            return ApplyToAndSeparate(flashcards, Flashcard.ShowBack);
-        };
+                  ApplyToAndSeparate(flashcards, Flashcard.ShowBack);
 
         /// <summary>
         /// Convert the flashcards to a tab separated values format.
         /// </summary>
         public static Func<IList<Flashcard>, string> TabSeparatedValues =
         (flashcards) =>
-        {
-            return flashcards.Select(Flashcard.TabSeparatedValues)
+                  flashcards.Select(Flashcard.TabSeparatedValues)
                              .DefaultIfEmpty(string.Empty)
                              .Aggregate((x, y) => x + y);
-        };
 
         /// <summary>
         /// Convert tab separated values to a list of flashcards.
@@ -81,12 +71,10 @@ namespace FlashcardApplication.Integration
         /// <returns>a list of flashcards</returns>
         public static Func<string, IList<Flashcard>> FromTabSeparatedValues =
         (contents) =>
-        {
-            return contents
+                   contents
                    .Split(new char[] { '\n' })
                    .Where((line) => !string.IsNullOrEmpty(line))
                    .Select(Flashcard.FromTabSeparatedValues)
                    .ToList();
-        };
     }
 }

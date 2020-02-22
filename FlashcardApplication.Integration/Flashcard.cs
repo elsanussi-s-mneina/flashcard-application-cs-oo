@@ -18,46 +18,32 @@ namespace FlashcardApplication.Integration
         /// </summary>
         public static Func<Flashcard, string> ShowBothSides =
         (flashcard) =>
-        {
-            return $"{flashcard.front} | {flashcard.back}";
-        };
+            $"{flashcard.front} | {flashcard.back}";
 
 
         public static Func<Flashcard, string> ShowFront =
-        (flashcard) =>
-        {
-            return flashcard.front;
-        };
+        (flashcard) => flashcard.front;
+        
 
         public static Func<Flashcard, string> ShowBack =
-        (flashcard) =>
-        {
-            return flashcard.back;
-        };
+        (flashcard) => flashcard.back;
 
         /// <summary>
         /// Convert a flashcard to tab separated values.
         /// </summary>
         public static Func<Flashcard, string> TabSeparatedValues =
-        (flashcard) =>
-        {
-            return $"{flashcard.front}\t{flashcard.back}\n";
-        };
-
+        (flashcard) =>  $"{flashcard.front}\t{flashcard.back}\n";
+     
 
         public static Func<string, Flashcard> FromTabSeparatedValues =
-        (line) =>
-        {
-            return FromParts(line.TrimEnd()
-                                 .Split('\t'));
-        };
+        (line) => FromParts(line.TrimEnd()
+                                .Split('\t'));
 
         private static Func<string[], Flashcard> FromParts =
         (parts) =>
-        {
-            return new Flashcard(ElementOrEmptyString(parts, 0),
+                   new Flashcard(ElementOrEmptyString(parts, 0),
                                  ElementOrEmptyString(parts, 1));
-        };
+        
 
         private static Func<string[], int, String> ElementOrEmptyString =
         (parts, index) =>
