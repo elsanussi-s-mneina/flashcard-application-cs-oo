@@ -1,0 +1,14 @@
+﻿@model FlashcardModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <a asp-area="" asp-controller="Lesson" asp-action="Index">Show Flashcards</a>
+    <h2>Front Side</h2>
+    <p>@Model.FrontSide</p>
+
+    <h2>Back Side</h2>
+    <p>@Model.BackSide</p>
+</div>
