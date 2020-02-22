@@ -6,4 +6,9 @@
 
 
 
+  <ItemGroup>
+    <ProjectReference Include="..\FlashcardApplication.Integration\FlashcardApplication.Integration.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
