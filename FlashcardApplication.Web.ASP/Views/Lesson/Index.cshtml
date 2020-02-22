@@ -1,14 +1,21 @@
 ﻿@model FlashcardModel
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Lesson Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <a asp-area="" asp-controller="Lesson" asp-action="Index">Show Flashcards</a>
-    <h2>Front Side</h2>
-    <p>@Model.FrontSide</p>
+    <div class="text-center">
+        <h1 class="display-4">Lesson Flashcards</h1>
+        @foreach (var f in Model.Flashcards)
+        {
+            <h2>Flashcard</h2>
+            <h3>Front Side</h3>
+            <div class="back-side">
+                @f.ShowFront()
+            </div>
+            <h3>Back Side</h3>
 
-    <h2>Back Side</h2>
-    <p>@Model.BackSide</p>
-</div>
+            <div class="front-side">
+                @f.ShowBack()
+            </div>
+        }
+    </div>

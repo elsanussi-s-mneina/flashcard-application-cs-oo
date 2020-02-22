@@ -24,7 +24,7 @@ namespace FlashcardApplication.Web.ASP.Controllers
         public IActionResult Index()
         {
             return View(new FlashcardModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
-                FrontSide = "the", BackSide = "le/la"});
+                        Flashcards = flashcards});
         }
     }
 }
