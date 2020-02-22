@@ -1,0 +1,14 @@
+﻿@model FlashcardModel
+@{
+    ViewData["Title"] = "Lesson Page";
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Lesson Flashcards (Fronts)</h1>
+        @foreach (var f in Model.Flashcards)
+        {
+            <div class="front-side">
+                @f.ShowFront()
+            </div>
+        }
+    </div>

@@ -26,5 +26,24 @@ namespace FlashcardApplication.Web.ASP.Controllers
             return View(new FlashcardModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
                         Flashcards = flashcards});
         }
+
+        public IActionResult Fronts()
+        {
+            return View(new FlashcardModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                Flashcards = flashcards
+            });
+        }
+
+        public IActionResult Backs()
+        {
+            return View(new FlashcardModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier,
+                Flashcards = flashcards
+            });
+        }
+
     }
 }
