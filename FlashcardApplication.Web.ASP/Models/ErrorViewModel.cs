@@ -1,5 +1,3 @@
-using System;
-
 namespace FlashcardApplication.Web.ASP.Models
 {
     public class ErrorViewModel

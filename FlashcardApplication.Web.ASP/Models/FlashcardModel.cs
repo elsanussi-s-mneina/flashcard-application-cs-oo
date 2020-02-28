@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FlashcardApplication.Integration;
 
 namespace FlashcardApplication.Web.ASP.Models
