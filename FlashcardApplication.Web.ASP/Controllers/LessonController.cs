@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FlashcardApplication.Integration;
 using FlashcardApplication.Web.ASP.Models;
+using System.Data.SQLite;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,12 +14,17 @@ namespace FlashcardApplication.Web.ASP.Controllers
 {
     public class LessonController : Controller
     {
-        public IList<Flashcard> flashcards = new List<Flashcard>
+        public IList<Flashcard> flashcards = new List<Flashcard>();
+
+
+        public LessonController()
         {
-            new Flashcard("the", "le/la"),
-            new Flashcard("I", "je"),
-            new Flashcard("we", "nous")
-        };
+            // We will do this for now. I realize,
+            // there is a pattern called dependency injection,
+            // perhaps I will do that later when I refactor.
+            flashcards = new DatabaseBridge().GetFlashcards();
+        }
+
 
         // GET: /<controller>/
         public IActionResult Index()

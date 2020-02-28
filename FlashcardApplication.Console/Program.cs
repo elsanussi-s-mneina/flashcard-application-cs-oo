@@ -17,6 +17,7 @@ namespace flashcard_application_cs_oo
 
 
             WriteLine("Enter 'open' if you want to open a lesson file");
+            WriteLine("Enter 'opendb' if you want to open a lesson from a database.");
             WriteLine("Enter 'n' if you want to create a new lesson.");
             WriteLine();
             PrintPrompt();
@@ -29,6 +30,12 @@ namespace flashcard_application_cs_oo
                 string fileName = ReadLine();
                 string fileContents = File.ReadAllText(fileName);
                 IList<Flashcard> flashcards = Lesson.FromTabSeparatedValues(fileContents);
+                StartCommandLineLoop(flashcards);
+            }
+            else if (userInput == "opendb")
+            {
+                WriteLine("Loading flashcards from the database");
+                IList<Flashcard> flashcards = new DatabaseBridge().GetFlashcards();
                 StartCommandLineLoop(flashcards);
             }
             else
