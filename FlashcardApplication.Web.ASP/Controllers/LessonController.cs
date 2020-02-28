@@ -51,5 +51,39 @@ namespace FlashcardApplication.Web.ASP.Controllers
             });
         }
 
+
+
+        [HttpGet]
+        public IActionResult AddFlashcard()
+        {
+            return View(new FlashcardModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
+        }
+ 
+ 
+        [HttpPost]
+        public IActionResult AddFlashcard(FlashcardModel model)
+        {
+            string message = "";
+           
+            if (ModelState.IsValid)
+            {
+                var addition = new Flashcard(model.FrontSide, model.BackSide);
+
+                new DatabaseBridge().AddFlashcard(addition);
+
+                 message = "Flashcard was added successfully:\n\n"
+                    + "front side: " + model.FrontSide
+                    + "\n back side: " + model.BackSide;
+            }
+            else
+            {
+                 message = "Failed to create the flashcard. Please try again";
+            }
+            return Content(message);
+        }
+
     }
 }

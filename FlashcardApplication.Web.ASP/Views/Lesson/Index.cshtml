@@ -11,21 +11,23 @@
             </thead>
             @foreach (var f in Model.Flashcards)
             {
-        <tr>
-            <td>
-                <div class="front-side">
-                    @f.ShowFront()
-                </div>
+                <tr>
+                    <td>
+                        <div class="front-side">
+                            @f.ShowFront()
+                        </div>
 
-            </td>
-            <td>
-                <div class="back-side">
-                    @f.ShowBack()
-                </div>
-            </td>
-        </tr>
+                    </td>
+                    <td>
+                        <div class="back-side">
+                            @f.ShowBack()
+                        </div>
+                    </td>
+                </tr>
 
             }
         </table>
+
+        <a class="nav-link text-dark" asp-area="" asp-controller="Lesson" asp-action="AddFlashcard">Add New Flashcard</a>
 
     </div>

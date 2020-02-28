@@ -18,6 +18,9 @@
     <None Remove="Flashcards.db" />
   </ItemGroup>
   <ItemGroup>
+    <Content Remove="Views\Lesson\Index %28copy%29.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Flashcards.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

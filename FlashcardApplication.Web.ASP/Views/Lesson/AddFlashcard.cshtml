@@ -1,0 +1,22 @@
+﻿@model FlashcardModel
+@{
+    ViewData["Title"] = "Lesson Page";
+}
+
+
+
+<h2>Add Flashcard</h2>
+
+<div class="text-center">
+
+
+    <form action="/Lesson/AddFlashcard" method="post">
+        <label for="FrontSide">Front Side:</label>
+        <input type="text" name="FrontSide" />
+
+        <label for="BackSide">Back Side:</label>
+        <input type="text" name="BackSide" />
+        <input type="submit" name="submit" />
+    </form>
+
+</div>

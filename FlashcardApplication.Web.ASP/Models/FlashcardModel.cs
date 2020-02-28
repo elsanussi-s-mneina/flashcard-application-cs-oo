@@ -11,5 +11,9 @@ namespace FlashcardApplication.Web.ASP.Models
         public IList<Flashcard> Flashcards { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+
+        public string FrontSide { get; set; }
+
+        public string BackSide { get; set; }
     }
 }
