@@ -51,6 +51,36 @@ namespace FlashcardApplication.Integration
             Console.Write(connection.State);
 
             return flashcards;
-        }   
+        }
+
+        public void AddFlashcard(Flashcard addition)
+        {
+            SQLiteConnection connection = new SQLiteConnection();
+            // Create an SQL connection
+
+            // Set the connection string to 
+            connection.ConnectionString = connectionString;
+            connection.Open();
+
+            // Create an SQL Command
+            SQLiteCommand insertCommand = new SQLiteCommand();
+
+            // Fill SQL command parameters.
+            insertCommand.Connection = connection;
+            insertCommand.CommandType = System.Data.CommandType.Text;
+            insertCommand.CommandText = "INSERT INTO Flashcards (FrontSide, BackSide) VALUES('"
+                + addition.ShowFront()
+                + "', '"
+                + addition.ShowBack()
+                + "');";
+            addition.ShowBack();
+            addition.ShowFront();
+            // Execute the command.
+            insertCommand.ExecuteNonQuery();
+
+
+            connection.Close();
+            Console.Write(connection.State);
+        }
     }
 }

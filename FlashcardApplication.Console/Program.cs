@@ -30,17 +30,17 @@ namespace flashcard_application_cs_oo
                 string fileName = ReadLine();
                 string fileContents = File.ReadAllText(fileName);
                 IList<Flashcard> flashcards = Lesson.FromTabSeparatedValues(fileContents);
-                StartCommandLineLoop(flashcards);
+                StartCommandLineLoop(flashcards, false);
             }
             else if (userInput == "opendb")
             {
                 WriteLine("Loading flashcards from the database");
                 IList<Flashcard> flashcards = new DatabaseBridge().GetFlashcards();
-                StartCommandLineLoop(flashcards);
+                StartCommandLineLoop(flashcards, true);
             }
             else
             {
-                StartCommandLineLoop(new List<Flashcard>());
+                StartCommandLineLoop(new List<Flashcard>(), false);
             }
         }
 
@@ -49,7 +49,8 @@ namespace flashcard_application_cs_oo
             Write("> "); // terminal prompt to show the user
         }
 
-        private static void StartCommandLineLoop(IList<Flashcard> flashcards)
+        private static void StartCommandLineLoop(IList<Flashcard> flashcards,
+            bool fromDatabase)
         {
             while (true)
             {
@@ -89,18 +90,31 @@ namespace flashcard_application_cs_oo
                         string bSide = ReadLine();
                         WriteLine("You entered the following for the back side: (" +
                                   bSide + ")");
-                        flashcards.Add(new Flashcard(fSide, bSide));
+                        var addition = new Flashcard(fSide, bSide);
+                        flashcards.Add(addition);
+                        if (fromDatabase)
+                        {
+                            new DatabaseBridge().AddFlashcard(addition);
+                        }
+
                         WriteLine("Done adding flashcard.");
                         break;
                     case "save":
-                        // Let the user choose the file name.
-                        WriteLine("Enter a name for a file to save to:");
-                        PrintPrompt();
-                        string fileName = ReadLine();
+                        if (!fromDatabase)
+                        {
+                            WriteLine("Already saved.");
+                        }
+                        else
+                        {
+                            // Let the user choose the file name.
+                            WriteLine("Enter a name for a file to save to:");
+                            PrintPrompt();
+                            string fileName = ReadLine();
 
-                        WriteLine("Saving flashcards to file called '" + fileName + "'");
-                        File.WriteAllText(fileName, lesson.TabSeparatedValues(flashcards));
-                        WriteLine("Done writing to file named " + fileName);
+                            WriteLine("Saving flashcards to file called '" + fileName + "'");
+                            File.WriteAllText(fileName, lesson.TabSeparatedValues(flashcards));
+                            WriteLine("Done writing to file named " + fileName);
+                        }
                         break;
                     case "x":
                         WriteLine("Exiting...");
