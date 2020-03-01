@@ -100,7 +100,7 @@ namespace flashcard_application_cs_oo
                         WriteLine("Done adding flashcard.");
                         break;
                     case "save":
-                        if (!fromDatabase)
+                        if (fromDatabase)
                         {
                             WriteLine("Already saved.");
                         }
