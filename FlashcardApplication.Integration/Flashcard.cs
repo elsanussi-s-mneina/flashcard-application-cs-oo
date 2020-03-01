@@ -13,6 +13,8 @@ namespace FlashcardApplication.Integration
             this.back = back;
         }
 
+        public int ID { get; set; }
+
         /// <summary>
         /// The front and back of a single flashcard.
         /// </summary>

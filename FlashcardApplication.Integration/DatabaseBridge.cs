@@ -29,7 +29,7 @@ namespace FlashcardApplication.Integration
             // Fill SQL command parameters.
             command.Connection = connection;
             command.CommandType = System.Data.CommandType.Text;
-            command.CommandText = "SELECT FrontSide, BackSide FROM Flashcards;";
+            command.CommandText = "SELECT ID, FrontSide, BackSide FROM Flashcards;";
 
 
             // Execute the command.
@@ -41,10 +41,9 @@ namespace FlashcardApplication.Integration
             IList<Flashcard> flashcards = new List<Flashcard>();
             while (dataReader.Read())
             {
-                Console.WriteLine("FrontSide: " +
-                    dataReader.GetString(0) + ", BackSide: " +
-                    dataReader.GetString(1));
-                flashcards.Add(new Flashcard(dataReader.GetString(0), dataReader.GetString(1)));
+                var flashcard = new Flashcard(dataReader.GetString(1), dataReader.GetString(2));
+                flashcard.ID = dataReader.GetInt32(0);
+                flashcards.Add(flashcard);
             }
 
             connection.Close();
