@@ -21,7 +21,7 @@ namespace FlashcardApplication.Integration
             // Set the connection string to 
             connection.ConnectionString = connectionString;
             connection.Open();
-            Console.WriteLine("Connection file name: " + connection.FileName);
+
             // Create an SQL Command.
             SQLiteCommand command = new SQLiteCommand();
 
@@ -47,7 +47,6 @@ namespace FlashcardApplication.Integration
             }
 
             connection.Close();
-            Console.Write(connection.State);
 
             return flashcards;
         }
