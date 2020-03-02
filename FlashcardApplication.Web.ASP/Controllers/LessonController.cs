@@ -13,12 +13,9 @@ namespace FlashcardApplication.Web.ASP.Controllers
         public IList<Flashcard> flashcards = new List<Flashcard>();
 
 
-        public LessonController()
+        public LessonController(IDatabaseBridge database)
         {
-            // We will do this for now. I realize,
-            // there is a pattern called dependency injection,
-            // perhaps I will do that later when I refactor.
-            flashcards = new DatabaseBridge().GetFlashcards();
+            flashcards = database.GetFlashcards();
         }
 
 

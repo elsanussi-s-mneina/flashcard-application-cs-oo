@@ -4,7 +4,7 @@ using System.Data.SQLite;
 
 namespace FlashcardApplication.Integration
 {
-    public class DatabaseBridge
+    public class DatabaseBridge : IDatabaseBridge
     {
         private string connectionString = "data source=Flashcards.db";
         // To do: move connectionString into a configuration file.
