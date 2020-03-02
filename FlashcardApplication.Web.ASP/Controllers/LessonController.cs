@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using FlashcardApplication.Integration;
+using FlashcardApplication.Services;
 using FlashcardApplication.Web.ASP.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,12 +10,13 @@ namespace FlashcardApplication.Web.ASP.Controllers
 {
     public class LessonController : Controller
     {
-        public IList<Flashcard> flashcards = new List<Flashcard>();
+        public IList<FlashcardDTO> flashcards = new List<FlashcardDTO>();
+        private IFlashcardServices services;
 
-
-        public LessonController(IDatabaseBridge database)
+        public LessonController(IFlashcardServices services)
         {
-            flashcards = database.GetFlashcards();
+            this.services = services;
+            flashcards = services.GetFlashcards();
         }
 
 
@@ -63,9 +64,13 @@ namespace FlashcardApplication.Web.ASP.Controllers
            
             if (ModelState.IsValid)
             {
-                var addition = new Flashcard(model.FrontSide, model.BackSide);
+                var addition = new FlashcardDTO
+                {
+                    FrontSide = model.FrontSide,
+                    BackSide = model.BackSide
+                };
 
-                new DatabaseBridge().AddFlashcard(addition);
+                services.AddFlashcard(addition);
 
                  message = "Flashcard was added successfully:\n\n"
                     + "front side: " + model.FrontSide

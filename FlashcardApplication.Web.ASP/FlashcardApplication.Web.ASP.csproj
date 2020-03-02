@@ -7,7 +7,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\FlashcardApplication.Integration\FlashcardApplication.Integration.csproj">
+    <ProjectReference Include="..\FlashcardApplication.Services\FlashcardApplication.Services.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
@@ -16,9 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Flashcards.db" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Views\Lesson\Index %28copy%29.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Flashcards.db">

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FlashcardApplication.Integration;
+using FlashcardApplication.Services;
 
 namespace FlashcardApplication.Web.ASP.Models
 {
@@ -7,7 +7,7 @@ namespace FlashcardApplication.Web.ASP.Models
     {
         public string RequestId { get; set; }
 
-        public IList<Flashcard> Flashcards { get; set; }
+        public IList<FlashcardDTO> Flashcards { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
