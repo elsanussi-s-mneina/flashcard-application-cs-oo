@@ -92,5 +92,13 @@ namespace FlashcardApplication.Integration
             }
             return flashcards;
         }
+
+        public static void PopulateID(IList<Flashcard> flashcards)
+        {
+            for (int i = 0; i < flashcards.Count; i++)
+            {
+                flashcards[i].ID = i + 1;
+            }
+        }
     }
 }

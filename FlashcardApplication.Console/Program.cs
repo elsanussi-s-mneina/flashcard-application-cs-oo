@@ -30,6 +30,7 @@ namespace flashcard_application_cs_oo
                 string fileName = ReadLine();
                 string fileContents = File.ReadAllText(fileName);
                 IList<Flashcard> flashcards = Lesson.FromTabSeparatedValues(fileContents);
+                Lesson.PopulateID(flashcards); // needed for deletion to work.
                 StartCommandLineLoop(flashcards, false);
             }
             else if (userInput == "opendb")
@@ -102,6 +103,28 @@ namespace flashcard_application_cs_oo
                         if (fromDatabase)
                         {
                             new DatabaseBridge().AddFlashcard(addition);
+
+                            // We reload the flashcards from the database
+                            // so that we have the ID that the
+                            // flashcard we just added has. It is the
+                            // database that sets the ID.
+                            flashcards = LoadFromDatabase();
+                            // If we didn't do this, the IDs would
+                            // not be unique within this application.
+                            // but they would be unique in the database.
+                        }
+                        else
+                        {
+                            // Set the ID to a unique ID.
+                            int maxID = 0;
+                            foreach (var f in flashcards)
+                            {
+                                if (f.ID > maxID)
+                                {
+                                    maxID = f.ID;
+                                }
+                            }
+                            addition.ID = maxID + 1;
                         }
 
                         WriteLine("Done adding flashcard.");
@@ -124,12 +147,6 @@ namespace flashcard_application_cs_oo
                         }
                         break;
                     case "delete":
-                        if (!fromDatabase)
-                        {
-                            WriteLine("Sorry, deleting flashcards from file is not implemented yet!");
-                            break;
-                        }
-
                         foreach (Flashcard f in flashcards)
                         {
                             WriteLine($"ID: {f.ID}\t\t{f.ShowFront()}\t{f.ShowBack()}");
@@ -140,7 +157,8 @@ namespace flashcard_application_cs_oo
 
                         if (userDeleteResponse == "c")
                         {
-                            WriteLine("Deletion cancelled. Nothing has been deleted.");
+                            WriteLine("Deletion cancelled. " +
+                                "Nothing has been deleted.\n");
                         }
                         else
                         {
@@ -148,13 +166,20 @@ namespace flashcard_application_cs_oo
                             {
                                 if (f.ID.ToString() == userDeleteResponse)
                                 {
-                                    new DatabaseBridge().DeleteFlashcard(f);
+                                    if (fromDatabase)
+                                    {
+                                        new DatabaseBridge().DeleteFlashcard(f);
+                                    }
+                                    flashcards.Remove(f);
                                     WriteLine($"Flashcard with ID: {userDeleteResponse} succesfully deleted.");
                                     break;
                                 }
                             }
-                            // Reload flashcards from database.
-                            flashcards = LoadFromDatabase();
+                            if (fromDatabase)
+                            {
+                                // Reload flashcards from database.
+                                flashcards = LoadFromDatabase();
+                            }
                         }
                         break;
                     case "x":
