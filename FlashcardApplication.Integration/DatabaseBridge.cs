@@ -91,7 +91,7 @@ namespace FlashcardApplication.Integration
             // Fill SQL command parameters.
             deleteCommand.Connection = connection;
             deleteCommand.CommandType = System.Data.CommandType.Text;
-            deleteCommand.CommandText = "DELETE FROM Flashcards WHERE ID ='"
+            deleteCommand.CommandText = "DELETE FROM Flashcards WHERE ID='"
                 + target.ID
                 + "';";
             // Execute the command.
