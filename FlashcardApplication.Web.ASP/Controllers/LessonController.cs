@@ -54,8 +54,8 @@ namespace FlashcardApplication.Web.ASP.Controllers
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });
         }
- 
- 
+
+
         [HttpPost]
         public IActionResult AddFlashcard(FlashcardModel model)
         {
