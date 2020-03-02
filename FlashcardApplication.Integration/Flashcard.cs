@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FlashcardApplication.Integration
+﻿namespace FlashcardApplication.Integration
 {
     public class Flashcard
     {
