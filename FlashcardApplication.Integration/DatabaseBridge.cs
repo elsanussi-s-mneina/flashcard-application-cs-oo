@@ -69,8 +69,7 @@ namespace FlashcardApplication.Integration
                 + "', '"
                 + addition.ShowBack()
                 + "');";
-            addition.ShowBack();
-            addition.ShowFront();
+
             // Execute the command.
             insertCommand.ExecuteNonQuery();
 
