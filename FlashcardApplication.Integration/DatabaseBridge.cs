@@ -15,11 +15,10 @@ namespace FlashcardApplication.Integration
 
         public IList<Flashcard> GetFlashcards()
         {
-            SQLiteConnection connection = new SQLiteConnection();
-            // Create an SQL connection
-
-            // Set the connection string to 
-            connection.ConnectionString = connectionString;
+            SQLiteConnection connection = new SQLiteConnection
+            {
+                ConnectionString = connectionString
+            };
             connection.Open();
 
             // Create an SQL Command.
@@ -53,11 +52,10 @@ namespace FlashcardApplication.Integration
 
         public void AddFlashcard(Flashcard addition)
         {
-            SQLiteConnection connection = new SQLiteConnection();
-            // Create an SQL connection
-
-            // Set the connection string to 
-            connection.ConnectionString = connectionString;
+            SQLiteConnection connection = new SQLiteConnection
+            {
+                ConnectionString = connectionString
+            };
             connection.Open();
 
             // Create an SQL Command
@@ -78,7 +76,31 @@ namespace FlashcardApplication.Integration
 
 
             connection.Close();
-            Console.Write(connection.State);
+        }
+
+        public void DeleteFlashcard(Flashcard target)
+        {
+            SQLiteConnection connection = new SQLiteConnection
+            {
+                ConnectionString = connectionString
+            };
+            connection.Open();
+
+            // Create an SQL Command
+            SQLiteCommand deleteCommand = new SQLiteCommand();
+
+            // Fill SQL command parameters.
+            deleteCommand.Connection = connection;
+            deleteCommand.CommandType = System.Data.CommandType.Text;
+            deleteCommand.CommandText = "DELETE FROM Flashcards WHERE ID ='"
+                + target.ID
+                + "';";
+            // Execute the command.
+            deleteCommand.ExecuteNonQuery();
+
+
+            connection.Close();
+
         }
     }
 }
