@@ -10,7 +10,7 @@ namespace flashcard_application_cs_oo
         /// <summary>
         /// This program runs in the terminal. It outputs text to the student.
         /// </summary>
-        static void Main(string[] args)
+        static void Main()
         {
             WriteLine("Welcome to Remember the Letter (C# object-oriented)");
             WriteLine();  // blank line
