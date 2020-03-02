@@ -34,14 +34,20 @@ namespace flashcard_application_cs_oo
             }
             else if (userInput == "opendb")
             {
-                WriteLine("Loading flashcards from the database");
-                IList<Flashcard> flashcards = new DatabaseBridge().GetFlashcards();
+                IList<Flashcard> flashcards = LoadFromDatabase();
                 StartCommandLineLoop(flashcards, true);
             }
             else
             {
                 StartCommandLineLoop(new List<Flashcard>(), false);
             }
+        }
+
+        private static IList<Flashcard> LoadFromDatabase()
+        {
+            WriteLine("Loading flashcards from the database");
+            IList<Flashcard> flashcards = new DatabaseBridge().GetFlashcards();
+            return flashcards;
         }
 
         private static void PrintPrompt()
@@ -58,6 +64,7 @@ namespace flashcard_application_cs_oo
                 WriteLine("Enter 'f' to show the front of each card.");
                 WriteLine("Enter 'b' to show the back of each card.");
                 WriteLine("Enter 'add' to add a flashcard.");
+                WriteLine("Enter 'delete' to delete a flashcard.");
                 WriteLine("Enter 'save' to save all flashcards");
                 WriteLine("Enter 'x' to exit the application.");
                 PrintPrompt();
@@ -114,6 +121,40 @@ namespace flashcard_application_cs_oo
                             WriteLine("Saving flashcards to file called '" + fileName + "'");
                             File.WriteAllText(fileName, lesson.TabSeparatedValues(flashcards));
                             WriteLine("Done writing to file named " + fileName);
+                        }
+                        break;
+                    case "delete":
+                        if (!fromDatabase)
+                        {
+                            WriteLine("Sorry, deleting flashcards from file is not implemented yet!");
+                            break;
+                        }
+
+                        foreach (Flashcard f in flashcards)
+                        {
+                            WriteLine($"ID: {f.ID}\t\t{f.ShowFront()}\t{f.ShowBack()}");
+                        }
+                        WriteLine("Enter the ID of the card you want to delete, or enter 'c' to cancel");
+                        PrintPrompt();
+                        string userDeleteResponse = ReadLine();
+
+                        if (userDeleteResponse == "c")
+                        {
+                            WriteLine("Deletion cancelled. Nothing has been deleted.");
+                        }
+                        else
+                        {
+                            foreach (Flashcard f in flashcards)
+                            {
+                                if (f.ID.ToString() == userDeleteResponse)
+                                {
+                                    new DatabaseBridge().DeleteFlashcard(f);
+                                    WriteLine($"Flashcard with ID: {userDeleteResponse} succesfully deleted.");
+                                    break;
+                                }
+                            }
+                            // Reload flashcards from database.
+                            flashcards = LoadFromDatabase();
                         }
                         break;
                     case "x":
