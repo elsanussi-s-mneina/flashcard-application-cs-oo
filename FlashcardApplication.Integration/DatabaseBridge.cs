@@ -62,12 +62,18 @@ namespace FlashcardApplication.Integration
 
             // Fill SQL command parameters.
             insertCommand.Connection = connection;
+
             insertCommand.CommandType = System.Data.CommandType.Text;
-            insertCommand.CommandText = "INSERT INTO Flashcards (FrontSide, BackSide) VALUES('"
-                + addition.ShowFront()
-                + "', '"
-                + addition.ShowBack()
-                + "');";
+            insertCommand.CommandText = "INSERT INTO Flashcards (FrontSide, BackSide) VALUES(@frontSide, @backSide);";
+
+            var frontSideParam = new SQLiteParameter("@frontSide", addition.ShowFront());
+            frontSideParam.DbType = System.Data.DbType.String;
+            insertCommand.Parameters.Add(frontSideParam);
+
+            var backSideParam = new SQLiteParameter("@backSide", addition.ShowBack());
+            backSideParam.DbType = System.Data.DbType.String;
+            insertCommand.Parameters.Add(backSideParam);
+
 
             // Execute the command.
             insertCommand.ExecuteNonQuery();
@@ -90,9 +96,13 @@ namespace FlashcardApplication.Integration
             // Fill SQL command parameters.
             deleteCommand.Connection = connection;
             deleteCommand.CommandType = System.Data.CommandType.Text;
-            deleteCommand.CommandText = "DELETE FROM Flashcards WHERE ID='"
-                + target.ID
-                + "';";
+
+            deleteCommand.CommandText = "DELETE FROM Flashcards WHERE ID=@ID;";
+
+            var idParam = new SQLiteParameter("@ID", target.ID);
+            idParam.DbType = System.Data.DbType.Int32;
+            deleteCommand.Parameters.Add(idParam);
+
             // Execute the command.
             deleteCommand.ExecuteNonQuery();
 
